@@ -1,38 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1>Add Review for {{ $book->title }}</h1>
+    <h1 class="app-header">Add Review for {{ $book->title }}</h1>
 
-  <form method="POST" action="{{ route('books.reviews.store', $book) }}">
-    @csrf
-    <label for="review">Review</label>
-    <textarea name="review" id="review" required>{{ old('review') }}</textarea>
+    <form class="review-form" method="POST" action="{{ route('books.reviews.store', $book) }}">
+        @csrf
 
-    <br>
-    
-    @error('review')
-    {{ $message }}
-    @enderror
+        <label class="review-label" for="review">Review</label>
+        <textarea class="review-text" name="review" id="review" rows="6" required>{{ old('review') }}</textarea>
 
-    <br>
+        <br>
 
-    <label for="rating">Rating</label>
+        @error('review')
+            {{ $message }}
+        @enderror
 
-    <select name="rating" id="rating" required>
-      <option value="">Select a Rating</option>
-      @for ($i = 1; $i <= 5; $i++)
-        <option value="{{ $i }}">{{ $i }}</option>
-      @endfor
-    </select>
+        <br>
 
-    <br>
-    
-    @error('rating')
-    {{ $message }}
-    @enderror
+        <label class="rating-label" for="rating">Rating</label>
 
-    <br>
+        <select class="rating-select" name="rating" id="rating" required>
+            <option value="">Select a Rating</option>
+            @for ($i = 1; $i <= 5; $i++)
+                <option value="{{ $i }}">{{ $i }}</option>
+            @endfor
+        </select>
 
-    <button type="submit" class="btn">Add Review</button>
-  </form>
+        <br>
+
+        @error('rating')
+            {{ $message }}
+        @enderror
+
+        <br>
+
+        <button class="add-review" type="submit">Add Review</button>
+    </form>
 @endsection

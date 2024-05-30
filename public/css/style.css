@@ -21,13 +21,12 @@ body{
     margin: 0 auto;
 }
 
-/*************************************************** index *************************************************/
-
-/* title */
-.books-header{
+.app-header{
     font-weight: bolder;
     margin-top: 1rem;
 }
+
+/*************************************************** index *************************************************/
 
 /* search */
 form.search-form{
@@ -36,38 +35,37 @@ form.search-form{
     align-items: center;
 }
 
-form.search-form .search-field, form.search-form .filter-field, 
-form.search-form .search-button , form.search-form  .clear-button{
+form.search-form input.search-field, form.search-form input.filter-field, 
+form.search-form button.search-button , form.search-form  a.clear-button{
     display: inline-block;
 }
 
-form.search-form  .search-field{
+form.search-form  input.search-field{
     padding: .5rem .5rem;
     margin: 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     border: .1rem solid #222;
     border-radius: .25rem;
     background: #f8f8ff;
     flex: 70%;
 }
 
-form.search-form .search-button , form.search-form .clear-button{
+form.search-form button.search-button , form.search-form a.clear-button{
     text-decoration: none;
     padding: .5rem 1rem;
     background: #f8f8ff;
     border: .1rem solid #222;
     border-radius: .25rem;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-right: 1rem;
 }
-form.search-form .search-button:hover , form.search-form .clear-button:hover{
+form.search-form button.search-button:hover , form.search-form a.clear-button:hover{
     background: #eeeeee;
 }
 
 /* filters */
-
-.filter-container{
+div.filter-container{
     background: #eeeeee;
     margin: 0 1rem 1rem 1rem;
     padding: .5rem;
@@ -75,16 +73,14 @@ form.search-form .search-button:hover , form.search-form .clear-button:hover{
     display: flex;
     align-items: center;
 }
-
-.filter-container a{
+div.filter-container a{
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin: 0 1rem;
     border-radius: .25rem;
     flex: 20%;
 }
-
-.filter-container a.applied-filter{
+div.filter-container a.applied-filter{
     text-decoration: underline !important;
     font-weight: bolder;
 }
@@ -104,33 +100,30 @@ ul.books-list li.book-list-item{
     cursor: pointer;
 }
 
-ul.books-list li.book-list-item .book-item-container{
+ul.books-list li.book-list-item a.book-item-container{
     display: flex;
     align-items: left;
     text-decoration: none;
     padding: 1rem;
 }
 
-ul.books-list li.book-list-item .book-item-container div.title-and-author{
+ul.books-list li.book-list-item a.book-item-container div.title-and-author{
     flex: 70%;
 }
-ul.books-list li.book-list-item .book-item-container div.title-and-author .book-title,
-ul.books-list li.book-list-item .book-item-container div.title-and-author .book-author{
-    font-size: 1rem;
+ul.books-list li.book-list-item a.book-item-container div.title-and-author p.book-title,
+ul.books-list li.book-list-item a.book-item-container div.title-and-author span.book-author{
+    font-size: 1.1rem;
     display: block;
 }
-ul.books-list li.book-list-item .book-item-container div.title-and-author .book-title{
+ul.books-list li.book-list-item a.book-item-container div.title-and-author p.book-title{
     text-decoration: none;
     font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+ul.books-list li.book-list-item a.book-item-container div.rating-and-count div.book-rating,
+ul.books-list li.book-list-item a.book-item-container div.rating-and-count div.book-review-count{
     font-size: 1.1rem;
-}
-
-ul.books-list li.book-list-item .book-item-container div.rating-and-count{
-
-}
-ul.books-list li.book-list-item .book-item-container div.rating-and-count .book-rating,
-ul.books-list li.book-list-item .book-item-container div.rating-and-count .book-review-count{
-    font-size: 1rem;
 }
 
 /* no books found */
@@ -138,14 +131,123 @@ ul.books-list li.empty-list-item {
     background: #222;
     padding: .5rem;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.1rem;
     border-radius: .25rem;
 }
-ul.books-list li.empty-list-item .empty-book-item .reset-link,
-ul.books-list li.empty-list-item .empty-book-item .empty-text{
-    font-size: 1rem;
+ul.books-list li.empty-list-item .empty-book-item a.reset-link,
+ul.books-list li.empty-list-item .empty-book-item p.empty-text{
+    font-size: 1.1rem;
     color: #f8f8ff;
 }
 
 /************************************************ show *********************************************************/
 
+/* book info */
+div.book-info-container div.book-author{
+    font-size: 1.2rem;
+}
+div.book-info-container div.rating-and-count {
+    font-size: 1.1rem;
+}
+div.book-info-container div.rating-and-count div a.add-review{
+    font-size: 1.3rem;
+}
+
+/* reviews */
+
+div.book-reviews-container{
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: left;
+}
+div.book-reviews-container h2.reviews-header{
+    margin: 1rem;
+}
+div.book-reviews-container ul.reviews-list{
+    list-style: none;
+    text-align: left;
+    padding: 0 1rem 1rem 1rem;
+}
+div.book-reviews-container ul.reviews-list li.review-list-item{
+    margin-bottom: 1rem;
+    background: #eeeeee;
+    border-radius: .25rem;
+}
+
+div.book-reviews-container ul.reviews-list li.review-list-item div.review-container{
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+div.book-reviews-container ul.reviews-list li.review-list-item div.review-container div{
+    display: flex;
+    align-items: left;
+}
+
+div.book-reviews-container ul.reviews-list li.review-list-item div.review-container div div.rating{
+    flex: 70%;
+}
+
+/* no reviews */
+
+div.book-reviews-container ul.reviews-list li.no-reviews-item{
+    background: #222;
+    padding: .5rem;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: .25rem;
+}
+div.book-reviews-container ul.reviews-list li.no-reviews-item div.no-reviews-container p.no-reviews{
+    font-size: 1rem;
+    color: #f8f8ff;
+}
+
+
+/********************************************** create ******************************************************/
+
+/* form */
+form.review-form{
+    padding: 1rem;
+    background: #eeeeee;
+    border-radius: .25rem;
+    margin-top: 1rem;
+}
+
+form.review-form label.review-label , 
+form.review-form label.rating-label{
+    display: block;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+form.review-form textarea.review-text{
+    width: 100%;
+    border-radius: .25rem;
+    background: #f8f8ff;
+    font-size: 1.1rem;
+    padding: .5rem;
+    resize: none;
+}
+
+form.review-form select.rating-select{
+    width: 100%;
+    border-radius: .25rem;
+    background: #f8f8ff;
+    font-size: 1.1rem;
+    padding: .5rem;
+}
+
+
+/* add review button */
+form.review-form button.add-review{
+    text-decoration: none;
+    padding: .5rem 1rem;
+    background: #eeeeee;
+    border: .1rem solid #222;
+    border-radius: .25rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+form.review-form button.add-review:hover{
+    background: #f8f8ff;
+}

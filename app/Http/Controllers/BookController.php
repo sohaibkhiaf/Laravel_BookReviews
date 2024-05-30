@@ -28,8 +28,9 @@ class BookController extends Controller
         
         // create cache for current data
         $cacheKey = "books_". $title ."_". $filter;
-        // line to be removed / for testing purposes only
-        cache()->forget($cacheKey); 
+
+        // cache()->forget($cacheKey);  // line to be removed / for testing purposes only
+
         // save in cache if not saved / fetch data saved if already exists
         $books = cache()->remember($cacheKey , 3600 , fn() => $books->get());
 
@@ -57,8 +58,9 @@ class BookController extends Controller
     {
         // create cache for current book
         $cacheKey = 'book_'.$book->id;
-        // line to be deleted / for testing purposes only
-        cache()->forget($cacheKey); 
+        
+        // cache()->forget($cacheKey); // line to be deleted / for testing purposes only
+
         // save in cache if not saved / fetch data saved if already exists
         $book = cache()->remember($cacheKey , 3600 , fn() => Book::with([
             'reviews' => fn($query) => $query->latest()

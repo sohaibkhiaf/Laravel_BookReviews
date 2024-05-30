@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1 class="books-header">Books</h1>
+    <h1 class="app-header">Book Reviews</h1>
 
     <form class="search-form" method="GET" action="{{ route('books.index') }}">
         <input class="search-field" type="text" name="title" placeholder="Search by title" value="{{ request('title') }}" />
@@ -43,9 +43,8 @@
             <li class="book-list-item">
                 <a class="book-item-container" href="{{ route('books.show' , ['book' => $book->id]) }}">
                     <div class="title-and-author">
-                        {{-- <a class="book-title" href="{{ route('books.show' , ['book' => $book->id]) }}" > {{ $book->title }} </a> --}}
                         <p class="book-title"> {{ $book->title }} </p>
-                        <span class="book-author">by {{ $book->author }}</span>
+                        <span class="book-author">By {{ $book->author }}</span>
                     </div>
                     <div class="rating-and-count">
                         <div class="book-rating">
