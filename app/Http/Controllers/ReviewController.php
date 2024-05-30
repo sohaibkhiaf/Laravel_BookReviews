@@ -26,6 +26,7 @@ class ReviewController extends Controller
 
     public function store(Request $request , Book $book)
     {
+        // validate data
         $data = $request->validate([
             'review' => 'required|min:5',
             'rating' => 'required|min:1|max:5|integer'
@@ -36,6 +37,8 @@ class ReviewController extends Controller
             'send-message:'.$request->ip(),
             $perHour = 2,
             function() use ($data , $book) {
+
+                // create review for the book
                 $book->reviews()->create($data);
             }
         );

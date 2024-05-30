@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('rating');
             $table->unsignedBigInteger('book_id');
             $table->timestamps();
-
+            // create relationship (foreign key)
             $table->foreign('book_id')->references('id')->on('books')
                 ->onDelete('cascade')->onUpdate('cascade');
         });

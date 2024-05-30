@@ -1,16 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Books</h1>
 
-    <form method="GET" action=" {{ route('books.index') }} ">
-        <input type="text" name="title" placeholder="Search by title" value="{{ request('title') }}" />
-        <input type="hidden" name="filter" value="{{ request('filter') }}"/>
-        <button type="submit">Search</button>
-        <a href=" {{ route('books.index') }} ">Clear</a>
+    <h1 class="books-header">Books</h1>
+
+    <form class="search-form" method="GET" action="{{ route('books.index') }}">
+        <input class="search-field" type="text" name="title" placeholder="Search by title" value="{{ request('title') }}" />
+        <input class="filter-field" type="hidden" name="filter" value="{{ request('filter') }}"/>
+        <button class="search-button" type="submit">Search</button>
+        <a class="clear-button" href=" {{ route('books.index') }} ">Clear</a>
     </form>
 
-    <div>
+    <div class="filter-container">
         @php
             $filter = [
                 "" => "Latest",
@@ -24,11 +25,11 @@
         @foreach ($filter as $key => $label)
             
             @if (request('filter') === $key || request('filter') === null && $key === '')
-                <a href="{{ route('books.index' , [...request()->query() , 'filter' => $key]) }}" style="text-decoration: none; color: #000">
+                <a class="applied-filter" href="{{ route('books.index' , [...request()->query() , 'filter' => $key]) }}">
                     {{ $label }}
                 </a>
             @else
-                <a href="{{ route('books.index' , [...request()->query() , 'filter' => $key]) }}">
+                <a class="unapplied-filter" href="{{ route('books.index' , [...request()->query() , 'filter' => $key]) }}">
                     {{ $label }}
                 </a>
             @endif
@@ -37,32 +38,30 @@
 
     </div>
 
-    <ul>
+    <ul class="books-list">
         @forelse ($books as $book)
-            <li>
-                <div class="book-item">
-                <div>
-                    <div>
-                    <a href="{{ route('books.show' , ['book' => $book->id]) }}" class="book-title"> {{ $book->title }} </a>
-                    <span>by {{ $book->author }}</span>
+            <li class="book-list-item">
+                <div class="book-item-container">
+                    <div class="title-and-author">
+                        <a class="book-title" href="{{ route('books.show' , ['book' => $book->id]) }}" > {{ $book->title }} </a>
+                        <span class="book-author">by {{ $book->author }}</span>
                     </div>
-                    <div>
-                    <div>
-                        {{ number_format( $book->reviews_avg_rating , 1)}}
-                        <x-star-rating rating="{{ round($book->reviews_avg_rating) }}" />
+                    <div class="rating-and-count">
+                        <div class="book-rating">
+                            <x-star-rating rating="{{ round($book->reviews_avg_rating) }}" />
+                            ({{ number_format( $book->reviews_avg_rating , 1)}})
+                        </div>
+                        <div class="book-review-count">
+                            out of {{ $book->reviews_count }} {{ Str::plural('review', $book->reviews_count) }}
+                        </div>
                     </div>
-                    <div class="book-review-count">
-                        out of {{ $book->reviews_count }} {{ Str::plural('review', $book->reviews_count) }}
-                    </div>
-                    </div>
-                </div>
                 </div>
             </li>
         @empty
-            <li>
+            <li class="empty-list-item">
                 <div class="empty-book-item">
-                <p class="empty-text">No books found</p>
-                <a href="#" class="reset-link">Reset criteria</a>
+                    <p class="empty-text">No books found</p>
+                    <a class="reset-link" href="{{ route('books.index') }}">Reset criteria</a>
                 </div>
             </li>
         @endforelse

@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: "Kanit", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #222;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    overflow-x: hidden;
+}
+
+body{
+    background-color: #f8f8ff;
+    text-align: center;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+/*************************************************** index *************************************************/
+
+/* title */
+.books-header{
+    font-weight: bolder;
+    margin-top: 1rem;
+}
+
+/* search */
+form.search-form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+form.search-form .search-field, form.search-form .filter-field, 
+form.search-form .search-button , form.search-form  .clear-button{
+    display: inline-block;
+}
+
+form.search-form  .search-field{
+    padding: .5rem .5rem;
+    margin: 1rem;
+    font-size: 1rem;
+    border: .1rem solid #222;
+    border-radius: .25rem;
+    background: #f8f8ff;
+    flex: 70%;
+}
+
+form.search-form .search-button , form.search-form .clear-button{
+    text-decoration: none;
+    padding: .5rem 1rem;
+    background: #f8f8ff;
+    border: .1rem solid #222;
+    border-radius: .25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 1rem;
+}
+form.search-form .search-button:hover , form.search-form .clear-button:hover{
+    background: #eeeeee;
+}
+
+/* filters */
+
+.filter-container{
+    background: #eeeeee;
+    margin: 0 1rem 1rem 1rem;
+    padding: .5rem;
+    border-radius: .25rem;
+    display: flex;
+    align-items: center;
+}
+
+.filter-container a{
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 1rem;
+    border-radius: .25rem;
+    flex: 20%;
+}
+
+.filter-container a.applied-filter{
+    text-decoration: underline !important;
+    font-weight: bolder;
+}
+
+/* books */
+
+ul.books-list{
+    list-style: none;
+    text-align: left;
+    padding: 0 1rem 1rem 1rem;
+}
+
+ul.books-list li.book-list-item{
+    margin-bottom: 1rem;
+    background: #eeeeee;
+    padding: 1rem;
+    border-radius: .25rem;
+}
+
+ul.books-list li.book-list-item div.book-item-container{
+    display: flex;
+    align-items: left;
+}
+
+ul.books-list li.book-list-item div.book-item-container div.title-and-author{
+    flex: 70%;
+}
+ul.books-list li.book-list-item div.book-item-container div.title-and-author .book-title,
+ul.books-list li.book-list-item div.book-item-container div.title-and-author .book-author{
+    font-size: 1rem;
+    display: block;
+}
+
+
+ul.books-list li.book-list-item div.book-item-container div.rating-and-count{
+
+}
+ul.books-list li.book-list-item div.book-item-container div.rating-and-count .book-rating,
+ul.books-list li.book-list-item div.book-item-container div.rating-and-count .book-review-count{
+    font-size: 1rem;
+}
+
+/* no books found */
+ul.books-list li.empty-list-item {
+    background: #222;
+    padding: .5rem;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: .25rem;
+}
+ul.books-list li.empty-list-item .empty-book-item .reset-link,
+ul.books-list li.empty-list-item .empty-book-item .empty-text{
+    font-size: 1rem;
+    color: #f8f8ff;
+}
+
+/************************************************ show *********************************************************/
+

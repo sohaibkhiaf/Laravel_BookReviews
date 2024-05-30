@@ -10,11 +10,14 @@ class BookController extends Controller
 
     public function index(Request $request)
     {
+        // receive parameters , GET method
         $title = $request->input("title");
-        $filter = $request->input("filter" , "");
+        $filter = $request->input("filter" , "");  // default is empty
 
+        // search books by title
         $books = Book::when($title , fn ($query , $title) => $query->title($title) );
 
+        // apply filters on searched books by title
         $books = match($filter) {
             "popular_last_month" => $books->popularLastMonth(),
             "popular_last_6months" => $books->popularLast6Months(),
@@ -23,8 +26,11 @@ class BookController extends Controller
             default => $books->latest()->withReviewsCount()->withAvgRating()
         };
         
+        // create cache for current data
         $cacheKey = "books_". $title ."_". $filter;
-        cache()->forget($cacheKey); // line to be deleted / for testing purposes only
+        // line to be removed / for testing purposes only
+        cache()->forget($cacheKey); 
+        // save in cache if not saved / fetch data saved if already exists
         $books = cache()->remember($cacheKey , 3600 , fn() => $books->get());
 
         return view('books.index' , ['books' => $books]);
@@ -47,15 +53,16 @@ class BookController extends Controller
     }
 
 
-    public function show(int $id)
+    public function show(Book $book)
     {
-        $cacheKey = 'book_'.$id;
-
-        cache()->forget($cacheKey); // line to be deleted / for testing purposes only
-
+        // create cache for current book
+        $cacheKey = 'book_'.$book->id;
+        // line to be deleted / for testing purposes only
+        cache()->forget($cacheKey); 
+        // save in cache if not saved / fetch data saved if already exists
         $book = cache()->remember($cacheKey , 3600 , fn() => Book::with([
             'reviews' => fn($query) => $query->latest()
-        ])->withReviewsCount()->withAvgRating()->findOrFail($id));
+        ])->withReviewsCount()->withAvgRating()->findOrFail($book->id));
 
         return view('books.show' , ['book' => $book ] );
     }
