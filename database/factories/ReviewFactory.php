@@ -30,7 +30,7 @@ class ReviewFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                "rating" => fake()->numberBetween(4, 5),
+                "rating" => fake()->numberBetween(2, 5),
             ];
         });
     }

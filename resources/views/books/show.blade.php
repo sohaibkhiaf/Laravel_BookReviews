@@ -9,6 +9,7 @@
       <div class="book-rating">
         <div>
           {{ number_format($book->reviews_avg_rating, 1) }}
+          <x-star-rating rating="{{ round($book->reviews_avg_rating) }}" />
         </div>
         <span class="book-review-count">
           {{ $book->reviews_count }} {{ Str::plural('review', $book->reviews_count) }}
@@ -18,13 +19,19 @@
   </div>
 
   <div>
+    <a href="{{ route('books.reviews.create' , ['book' => $book]) }}">Add a review!</a>
+  </div>
+
+  <div>
     <h2>Reviews</h2>
     <ul>
       @forelse ($book->reviews as $review)
         <li class="book-item">
           <div>
             <div>
-              <div>{{ $review->rating }}</div>
+              <div>
+                <x-star-rating rating="{{ round($review->rating) }}" />  
+              </div>
               <div class="book-review-count">
                 {{ $review->created_at->format('M j, Y') }}</div>
             </div>
