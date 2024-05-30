@@ -41,9 +41,10 @@
     <ul class="books-list">
         @forelse ($books as $book)
             <li class="book-list-item">
-                <div class="book-item-container">
+                <a class="book-item-container" href="{{ route('books.show' , ['book' => $book->id]) }}">
                     <div class="title-and-author">
-                        <a class="book-title" href="{{ route('books.show' , ['book' => $book->id]) }}" > {{ $book->title }} </a>
+                        {{-- <a class="book-title" href="{{ route('books.show' , ['book' => $book->id]) }}" > {{ $book->title }} </a> --}}
+                        <p class="book-title"> {{ $book->title }} </p>
                         <span class="book-author">by {{ $book->author }}</span>
                     </div>
                     <div class="rating-and-count">
@@ -55,7 +56,7 @@
                             out of {{ $book->reviews_count }} {{ Str::plural('review', $book->reviews_count) }}
                         </div>
                     </div>
-                </div>
+                </a>
             </li>
         @empty
             <li class="empty-list-item">

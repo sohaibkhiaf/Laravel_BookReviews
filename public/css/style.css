@@ -100,30 +100,36 @@ ul.books-list{
 ul.books-list li.book-list-item{
     margin-bottom: 1rem;
     background: #eeeeee;
-    padding: 1rem;
     border-radius: .25rem;
+    cursor: pointer;
 }
 
-ul.books-list li.book-list-item div.book-item-container{
+ul.books-list li.book-list-item .book-item-container{
     display: flex;
     align-items: left;
+    text-decoration: none;
+    padding: 1rem;
 }
 
-ul.books-list li.book-list-item div.book-item-container div.title-and-author{
+ul.books-list li.book-list-item .book-item-container div.title-and-author{
     flex: 70%;
 }
-ul.books-list li.book-list-item div.book-item-container div.title-and-author .book-title,
-ul.books-list li.book-list-item div.book-item-container div.title-and-author .book-author{
+ul.books-list li.book-list-item .book-item-container div.title-and-author .book-title,
+ul.books-list li.book-list-item .book-item-container div.title-and-author .book-author{
     font-size: 1rem;
     display: block;
 }
+ul.books-list li.book-list-item .book-item-container div.title-and-author .book-title{
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
 
-
-ul.books-list li.book-list-item div.book-item-container div.rating-and-count{
+ul.books-list li.book-list-item .book-item-container div.rating-and-count{
 
 }
-ul.books-list li.book-list-item div.book-item-container div.rating-and-count .book-rating,
-ul.books-list li.book-list-item div.book-item-container div.rating-and-count .book-review-count{
+ul.books-list li.book-list-item .book-item-container div.rating-and-count .book-rating,
+ul.books-list li.book-list-item .book-item-container div.rating-and-count .book-review-count{
     font-size: 1rem;
 }
 
