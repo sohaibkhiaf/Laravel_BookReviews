@@ -7,29 +7,37 @@
         @csrf
 
         <label class="review-label" for="review">Review</label>
-        <textarea class="review-text" name="review" id="review" rows="6" required>{{ old('review') }}</textarea>
+        <textarea class="review-text" name="review" id="review" rows="6" >{{ old('review') }}</textarea>
 
         <br>
 
         @error('review')
-            {{ $message }}
+            <div class="error-message">
+                {{ $message }}
+            </div>
         @enderror
 
         <br>
 
         <label class="rating-label" for="rating">Rating</label>
 
-        <select class="rating-select" name="rating" id="rating" required>
+        <select class="rating-select" name="rating" id="rating" >
             <option value="">Select a Rating</option>
             @for ($i = 1; $i <= 5; $i++)
-                <option value="{{ $i }}">{{ $i }}</option>
+                @if ( old('rating') == $i )
+                    <option value="{{ $i }}" selected>{{ $i }}</option>
+                @else
+                    <option value="{{ $i }}" >{{ $i }}</option>
+                @endif
             @endfor
         </select>
 
         <br>
 
         @error('rating')
-            {{ $message }}
+            <div class="error-message">
+                {{ $message }}
+            </div>
         @enderror
 
         <br>
