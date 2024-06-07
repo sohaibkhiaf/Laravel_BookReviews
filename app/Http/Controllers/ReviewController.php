@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Book;
-use Illuminate\Support\Facades\RateLimiter;
 
 class ReviewController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('throttle:reviews')->only(['store']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -32,20 +37,8 @@ class ReviewController extends Controller
             'rating' => 'required|min:1|max:5|integer'
         ]);
  
-        // rate limiter 
-        $executed = RateLimiter::attempt(
-            'send-message:'.$request->ip(),
-            $perHour = 2,
-            function() use ($data , $book) {
-
-                // create review for the book
-                $book->reviews()->create($data);
-            }
-        );
-        
-        if (! $executed) {
-            abort(429);
-        }
+        // create review for the book
+        $book->reviews()->create($data);
 
         return redirect()->route('books.show' , ['book' => $book]);
     }
